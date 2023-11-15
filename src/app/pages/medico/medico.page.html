@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Clinica VitaLife</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title size="large">Medico</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Bienvenido Doctor.</strong>
+    <p>Ingrese sus datos.</p>
+    <ion-list>
+      <ion-input label="Correo" label-placement="floating" fill="outline" placeholder="correo@clinica.com" type="email" helperText="Ingrese su correo" errorText="Correo Invalido" ngModel email></ion-input>
+      <br>
+      <ion-input type="password" label="Contraseña" label-placement="floating" fill="outline" placeholder="*******" ></ion-input>
+      <br>
+
+      <br>
+      <ion-button color="success" routerLink="/vistadoctor">Iniciar sesion.</ion-button>
+      <br>
+      <br>
+      <a routerLink="/recuperarcontra">¿Olvido su Contraseña?</a>
+    </ion-list>
+  </div>
+</ion-content>

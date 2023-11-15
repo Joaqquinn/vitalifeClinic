@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Inicio Bienvenido Sr(a):</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">Editar perfil.</ion-content> 
+  <ion-content><h5>Cerrar sesion</h5></ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+</div>
+
+<ion-content [fullscreen]="true" class="background">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="Medium">Inicio</ion-title> <br>
+    </ion-toolbar>
+  </ion-header>
+  <br>
+  <ion-card>
+    <ion-card-content>
+      <ion-button fill="outline" routerLink="/reservahora" class="menu">Reserva hora</ion-button> 
+      <br>
+      <ion-button fill="outline" routerLink="/modificarhora" class="menu">Modificar hora</ion-button>
+      <br>
+      <ion-button fill="outline" routerLink="/mensajes" class="menu">Mensajes</ion-button>
+      <br>
+      <ion-button fill="outline" routerLink="/contacto" class="menu">Contacto</ion-button>
+      <br>
+      <ion-button fill="outline" routerLink="/editarperfil" class="menu">Editar perfil</ion-button> <br>
+      <ion-button fill="outline" routerLink="/servicios" class="menu">Servicios</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

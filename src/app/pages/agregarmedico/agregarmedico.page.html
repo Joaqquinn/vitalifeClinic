@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Medico</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Agregar Medico</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <br>
+  <ion-card>
+    <ion-input label="Nombre:" labelPlacement="floating" class="caja" class="form-control" placeholder="Escriba aqui" type="text" pattern="[A-Za-z]+" [(ngModel)]="medico.nombre" #name="ngModel" required>
+    </ion-input>
+  </ion-card>
+  <div *ngIf="name.invalid" [hidden]="name.valid || name.pristine">
+    El campo solo debe incluir letras.
+  </div>
+  <div class="alert alert-danger" [hidden]="name.valid || name.pristine">
+    El campo es obligatorio
+  </div>
+
+  <ion-card>
+    <ion-input label="Apellidos:" labelPlacement="floating" class="caja" class="form-control" placeholder="Escriba aqui" type="text" pattern="[A-Za-z]+" [(ngModel)]="medico.apellidos" #apellidos="ngModel" required>
+    </ion-input>
+  </ion-card>
+  <div *ngIf="apellidos.invalid" [hidden]="apellidos.valid || apellidos.pristine">
+    El campo solo debe incluir letras.
+  </div>
+  <div class="alert alert-danger" [hidden]="apellidos.valid || apellidos.pristine">
+    El campo es obligatorio
+  </div>
+
+<ion-card>
+  <ion-input labelPlacement="floating" class="caja form-control" placeholder="correo@correo.com" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" errorText="correo invalido" [(ngModel)]="medico.email" #email="ngModel">
+    <div slot="label">Correo electronico <ion-text color="danger">(Requerido)</ion-text></div>
+  </ion-input>
+  <div *ngIf="email.invalid">
+    El correo es invalido.
+  </div>
+  <div class="alert alert-danger" [hidden]="email.valid || email.pristine">
+    El campo es obligatorio.
+  </div>
+</ion-card>
+
+<ion-card>
+  <ion-input class="caja form-control"
+    label="Numero telefonico:(+56)"
+    placeholder="9 xxxx-xxxx" type="number" pattern="[0-9].{8,9}" minlength="8" maxlength="9" [(ngModel)]="medico.telefono" #telefono="ngModel">
+  </ion-input>
+  <div *ngIf="telefono.invalid">
+    El número es invalido
+  </div>
+</ion-card>
+
+<ion-card>
+  <ion-select label="Especialidad:" interface="popover" placeholder="Seleccione la especialidad">
+    <ion-select-option value="Hombre">Cardiologo</ion-select-option>
+    <ion-select-option value="Mujer">Cirujano</ion-select-option>
+    <ion-select-option value="Otros">Dermatologo</ion-select-option>
+    <ion-select-option value="Otros">General</ion-select-option>
+    <ion-select-option value="Otros">Neurologo</ion-select-option>
+    <ion-select-option value="Otros">Nutricion</ion-select-option>
+    <ion-select-option value="Otros">Traumatologo</ion-select-option>
+    <ion-select-option value="Otros">Psicologo</ion-select-option>
+  </ion-select>
+</ion-card>
+
+<ion-card>
+  <ion-input labelPlacement="floating" placeholder="***********" type="password" class="caja form-control"
+  [(ngModel)]="medico.clave" #clave="ngModel" [counter]="true" [maxlength]="8" [minlength]="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,12}$">
+    <div slot="label">Contraseña <ion-text color="danger">(Requerido)</ion-text></div>
+  </ion-input>
+  <div *ngIf="clave.invalid" [hidden]="clave.valid">
+    La contraseña debe poseer una Mayuscula, una Minuscula, un simbolo y tener un minimo y maximo de 8 caracteres.
+  </div>
+  <div class="alert alert-danger" [hidden]="clave.valid || clave.pristine">
+    El campo es obligatorio
+  </div>
+</ion-card>
+
+
+<ion-card>
+  <ion-input labelPlacement="floating" placeholder="***********" type="password" class="caja form-control"
+  [(ngModel)]="medico.confirmarclave" #confirmarclave="ngModel" [counter]="true" [maxlength]="8" [minlength]="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,12}$">
+    <div slot="label">Repita su contraseña <ion-text color="danger">(Requerido)</ion-text></div>
+  </ion-input>
+  <div *ngIf="confirmarclave.invalid" [hidden]="confirmarclave.valid || confirmarclave.pristine">
+    La contraseña debe poseer una Mayuscula, una Minuscula, un simbolo y tener minimo y maximo de 8 caracteres.
+  </div>
+  <div *ngIf="confirmarclave!=clave" [hidden]="confirmarclave==clave || confirmarclave.valid">
+    Las contraseñas no coinciden
+  </div>
+</ion-card>
+
+<ion-button color="success" [disabled]="name.invalid || clave.invalid || confirmarclave.invalid || email.invalid">Registrar</ion-button>
+
+</ion-content>

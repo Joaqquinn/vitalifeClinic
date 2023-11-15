@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Resultado examenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Resultado examenes</ion-title>
+    </ion-toolbar>
+  </ion-header> <br>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Rut:" labelPlacement="floating" placeholder="*Ej: 12.345.678-5"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="N° de orden:" labelPlacement="floating" placeholder="*Ej: 01234567890"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <ion-button color="success" expand="full">Buscar.</ion-button>
+</ion-content>
