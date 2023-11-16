@@ -59,6 +59,22 @@ export class UserService {
     this.loggedIn.next(false);
   }
 
+  async subirSelfie(imagen:any){
+    const storageRef = ref(this.storage, 'userImg/' + imagen.fname);
+    await uploadBytes(storageRef, imagen.file);
+    getDownloadURL(storageRef).then((url)=>{
+      console.log("URL ===> ", url);
+      this.currentUser.selfie = url;
+      const usersRef = collection(this.Firestore, 'users');
+      const userDoc = doc(usersRef, this.currentUser.correo);
+      setDoc(userDoc, this.currentUser);
+      return this.router.navigate(['/home']);
+    }).catch((err)=>{
+      console.log("ERROR AL OBTENER URL ===> ", err);
+      return 'error'
+    });
+  }
+
 
 
 

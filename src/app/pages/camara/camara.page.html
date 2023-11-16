@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>camara</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button (click)=takePhoto()>Foto</ion-button>
+
+  <ion-card *ngIf="imagen">
+    <ion-img [src]="imagen.src"></ion-img>
+    <ion-button (click)="subirFoto()">Subir foto</ion-button>
+  </ion-card>
+
+</ion-content>
+
