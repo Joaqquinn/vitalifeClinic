@@ -99,6 +99,11 @@ const routes: Routes = [
     path: 'agregarmedico',
     loadChildren: () => import('./pages/agregarmedico/agregarmedico.module').then( m => m.AgregarmedicoPageModule)
   },
+  {
+    path: 'camara',
+    loadChildren: () => import('./pages/camara/camara.module').then( m => m.CamaraPageModule)
+  },
+
 ];
 
 @NgModule({
