@@ -41,7 +41,7 @@ iniciarSesion() {
           console.log(doc.data());
           this.userService.currentUser = doc.data();
           this.spinner.hide();
-          this.router.navigate(['/home']);
+          this.router.navigate(['/medico']);
         });
         this.loginForm.reset();
       }).catch((error) => {

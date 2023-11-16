@@ -1,26 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header translucent>
   <ion-toolbar color="primary">
-    <ion-title>
-      Clinica VitaLife
-    </ion-title>
+    <ion-title>Clinica</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="background">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Clinica VitaLife</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Bienvenido.</strong>
-    <p>¿Como desea Ingresar?</p>
-    <br>
-    <!-- ACA PUEDES ENCONTRAR EL COMO SE ASIGNAN LAS RUTAS CON EL COMANDO DE routerLink="ACA INGRESAS LA PAGINA A DONDE QUIERES DIRIGIRTE"-->
-    <ion-button style="width: 250px" routerLink="/medico" color="secondary">Medico.</ion-button><br>
-    <ion-button style="width: 250px;" routerLink="/paciente" color="secondary">Paciente.</ion-button><br>
-    <ion-button style="width: 250px;" routerLink="/admin" color="secondary">Administrador</ion-button>
-    
+<ion-content style="--background: none;">
+  <!-- Fondo de degradado -->
+  <div class="background-image"></div>
+  
+  <!-- Sección de bienvenida -->
+  <div class="welcome-section">
+    <ion-text color="dark">
+      <h1>Bienvenido a Nuestra Clínica Vitalife</h1>
+      <p>Accede para gestionar tus citas y consultar tu información de salud.</p>
+    </ion-text>
+    <ion-button expand="full" [routerLink]="'/paciente'">Iniciar Sesión</ion-button>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>© 2023 Clínica</ion-title>
+  </ion-toolbar>
+</ion-footer>

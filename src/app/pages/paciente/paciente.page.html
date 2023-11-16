@@ -6,34 +6,31 @@
     <ion-title>Clinica VitaLife</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true" class="background">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Paciente</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
+<ion-content style="--background: none;">
+  <!-- Fondo de degradado -->
+  <div class="background-image"></div>
+  
+  <!-- Contenedor del formulario de inicio de sesión -->
+  <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
-      <ion-list>
-        <ion-item class="formGroup">
-          <ion-label for="correo" position="floating">Correo</ion-label>
-          <ion-input type="text" class="form-control" id="correo" formControlName="correo" placeholder="Ingrese su correo"></ion-input>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item class="form-item">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" formControlName="correo" required></ion-input>
         </ion-item>
-         
-        <ion-item class="formGroup">
-          <ion-label for="password" position="floating">Contraseña</ion-label>
-          <ion-input class="form-control" id="password" formControlName="password" type="password" placeholder="Ingrese su contraseña"  ></ion-input>
+        <ion-item class="form-item">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password" required></ion-input>
         </ion-item>
-       
       </ion-list>
-      <ion-button type="submit" [disabled]="!loginForm.valid" expand="full">Ingresar</ion-button>
+      <ion-button type="submit" [disabled]="!loginForm.valid" expand="full" class="login-button">Ingresar</ion-button>
     </form>
-    <ion-button [routerLink]="'/restablecer-contra'" fill="clear">¿Olvidaste tu contraseña?</ion-button>
-    <ion-button [routerLink]="'/camara'" fill="clear">camara</ion-button>
-
-    <ion-button [routerLink]="'/registro'" fill="clear">¿No tienes cuenta? Registrate</ion-button>
+    
+    <div class="additional-options">
+      <ion-button [routerLink]="'/restablecer-contra'" fill="clear">¿Olvidaste tu contraseña?</ion-button>
+      <ion-button [routerLink]="'/camara'" fill="clear">Cámara</ion-button>
+      <ion-button [routerLink]="'/registropaciente'" fill="clear">¿No tienes cuenta? Regístrate</ion-button>
+    </div>
   </div>
-
 </ion-content>
+
