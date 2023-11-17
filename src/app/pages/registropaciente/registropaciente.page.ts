@@ -38,7 +38,7 @@ export class RegistropacientePage implements OnInit {
       console.log('Formulario válido:', this.registerForm.value);
       this.userService.register(data.correo, data.password).then((res) => {
         console.log('Usuario registrado correctamente: ' + res);
-        this.userService.createUser(data).then((res) => {
+        this.userService.createUser(data,'paciente').then((res) => {
           console.log('Usuario creado en la base de datos: ' + res);
           this.spinner.hide();
           this.router.navigate(['/paciente']);

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth, onAuthStateChanged, updatePassword, user } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword,} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
-import { Firestore, collection, addDoc, query, where, getDocs, setDoc, doc, getDoc } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { Firestore, collection, addDoc, query, where, getDocs, setDoc, doc, getDoc, docData } from '@angular/fire/firestore';
+import { BehaviorSubject, of } from 'rxjs';
 import { getDownloadURL } from 'firebase/storage';
+import { Observable } from 'rxjs';
+import { switchMap,map,tap } from 'rxjs';
 
 
 @Injectable({
@@ -25,23 +27,46 @@ export class UserService {
     private storage: Storage
   ) { }
 
+  isAdmin(): Observable<boolean> {
+    return authState(this.auth).pipe(
+      switchMap(user => {
+        if (user) {
+          const userRef = doc(this.Firestore, `users/${user.uid}`);
+          return docData(userRef);
+        } else {
+          return of(null);
+        }
+      }),
+      map(userDoc => userDoc ? userDoc['tipoUsuario'] === 'admin' : false)
+    );
+  }
+  
+  
+  
+
   register(email:any, password:any){
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
-  async createUser(data:any){
-    const usersRef = collection(this.Firestore,'users');
-    return await setDoc(doc(usersRef, data.correo),{
-          nombre : data.nombre,
-          apellidoP: data.apellidoP,
-          apellidoM: data.apellidoM,
-          edad: data.edad,
-          correo :data.correo,
-          telefono :data.telefono,
-          direccion: data.direccion,
-          password: data.password    
-  })
-  }
+    async createUser(data:any, tipoUsuario:any){
+      const usersRef = collection(this.Firestore,'users');
+      return await setDoc(doc(usersRef, data.correo),{
+            nombre : data.nombre,
+            apellidoP: data.apellidoP,
+            apellidoM: data.apellidoM,
+            edad: data.edad,
+            correo :data.correo,
+            telefono :data.telefono,
+            direccion: data.direccion,
+            password: data.password,
+            tipoUsuario : tipoUsuario
+
+    })
+    }
+
+    
+
+
   login(email:any, password:any){
     return signInWithEmailAndPassword(this.auth, email, password)
   }
