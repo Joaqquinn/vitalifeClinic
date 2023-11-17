@@ -39,10 +39,7 @@ const routes: Routes = [
     path: 'servicios',
     loadChildren: () => import('./pages/servicios/servicios.module').then( m => m.ServiciosPageModule)
   },
-  {
-    path: 'mensajes',
-    loadChildren: () => import('./pages/mensajes/mensajes.module').then( m => m.MensajesPageModule)
-  },
+
   {
     path: 'contacto',
     loadChildren: () => import('./pages/contacto/contacto.module').then( m => m.ContactoPageModule)
@@ -76,10 +73,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recuperarcontra/recuperarcontra.module').then( m => m.RecuperarcontraPageModule)
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
-  },
-  {
     path: 'vistaadmin',
     loadChildren: () => import('./pages/vistaadmin/vistaadmin.module').then( m => m.VistaadminPageModule)
   },
@@ -102,7 +95,11 @@ const routes: Routes = [
   {
     path: 'camara',
     loadChildren: () => import('./pages/camara/camara.module').then( m => m.CamaraPageModule)
+  },  {
+    path: 'indice',
+    loadChildren: () => import('./pages/indice/indice.module').then( m => m.IndicePageModule)
   },
+
 
 ];
 
