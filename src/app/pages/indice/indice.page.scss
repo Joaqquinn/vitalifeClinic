@@ -1,0 +1,40 @@
+ion-header {
+    ion-toolbar {
+      --background: #3880ff; // Cambia el color de fondo de la barra de herramientas
+      --color: white; // Cambia el color del texto de la barra de herramientas
+    }
+  }
+  
+  ion-card {
+    margin: 16px;
+  
+    ion-card-header {
+      background-color: #f8f8f8; // Color de fondo para el encabezado de la tarjeta
+      ion-card-title {
+        color: #333; // Color del título de la tarjeta
+      }
+    }
+  
+    ion-card-content {
+      color: #666; // Color del contenido de la tarjeta
+    }
+  }
+  
+  ion-list {
+    ion-item {
+      --background: #fff; // Color de fondo para los elementos de la lista
+      --color: #444; // Color del texto para los elementos de la lista
+      --border-color: #ddd; // Color del borde de los elementos de la lista
+      --padding-start: 16px; // Espaciado interno al inicio del elemento de la lista
+  
+      ion-icon {
+        --color: #3880ff; // Color de los iconos
+        margin-right: 8px; // Espaciado a la derecha del icono
+      }
+  
+      &:hover {
+        --background: #f4f4f4; // Color de fondo al pasar el cursor sobre los elementos de la lista
+      }
+    }
+  }
+  
