@@ -40,8 +40,6 @@ export class UserService {
     }
   }
 
-
-  
   
 
   register(email:any, password:any){
@@ -94,7 +92,7 @@ export class UserService {
       const usersRef = collection(this.Firestore, 'users');
       const userDoc = doc(usersRef, this.currentUser.correo);
       setDoc(userDoc, this.currentUser);
-      return this.router.navigate(['/home']);
+      return this.router.navigate(['/indice']);
     }).catch((err)=>{
       console.log("ERROR AL OBTENER URL ===> ", err);
       return 'error'
