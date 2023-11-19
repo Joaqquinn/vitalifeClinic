@@ -15,6 +15,7 @@ imagen : any
   ) { }
 
   ngOnInit() {
+
   }
 
   async takePhoto(){
@@ -44,7 +45,7 @@ imagen : any
           this.imagen = {
             fname:
               this.userService.currentUser.nombre +
-              this.userService.currentUser.apellido +
+              this.userService.currentUser.apellidoP +
               '.png',
             src: image.webPath,
             file: pngBlob,
@@ -53,8 +54,6 @@ imagen : any
         }
 
         console.log("IMAGEN GUARDADA ===> ", this.imagen);
-
-
 
 
     }
