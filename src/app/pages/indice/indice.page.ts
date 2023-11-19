@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-indice',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndicePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
 
   verPerfil() {
-    // Lógica para ir al perfil del usuario
+    this.router.navigate(['/perfil']);
   }
 
   agendarCita() {

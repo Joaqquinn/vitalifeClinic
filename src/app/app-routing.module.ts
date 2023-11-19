@@ -79,7 +79,11 @@ const routes: Routes = [
   {
     path: 'indice',
     loadChildren: () => import('./pages/indice/indice.module').then( m => m.IndicePageModule)
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+
 
 
 ];

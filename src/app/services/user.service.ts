@@ -27,20 +27,20 @@ export class UserService {
     private storage: Storage
   ) { }
 
-  isAdmin(): Observable<boolean> {
-    return authState(this.auth).pipe(
-      switchMap(user => {
-        if (user) {
-          const userRef = doc(this.Firestore, `users/${user.uid}`);
-          return docData(userRef);
-        } else {
-          return of(null);
-        }
-      }),
-      map(userDoc => userDoc ? userDoc['tipoUsuario'] === 'admin' : false)
-    );
+  async getUserProfile(uid: string) {
+    const userRef = doc(this.Firestore, `users/${uid}`);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      return userSnap.data();
+    } else {
+      // Manejar el caso en que el usuario no existe
+      console.log("No such user!");
+      return null;
+    }
   }
-  
+
+
   
   
 
@@ -75,6 +75,7 @@ export class UserService {
     const usersRef = collection(this.Firestore, 'users');
     const userQuery = query(usersRef, where('correo', '==', email));
     return await getDocs(userQuery);
+
   }
 
   logout(){
@@ -99,10 +100,6 @@ export class UserService {
       return 'error'
     });
   }
-
-
-
-
 
 
 
