@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { GoogleCalendarServiceService } from 'src/app/services/google-calendar-service.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 
 export class PacientePage implements OnInit {
-  
+  isAuthenticated = false;
+
   error:boolean = false
   loginForm: FormGroup;
 
@@ -20,7 +22,9 @@ export class PacientePage implements OnInit {
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private userService: UserService) {
+    private userService: UserService,
+    private googleCalendar: GoogleCalendarServiceService
+    ) {
 
 this.loginForm = this.fb.group({
 
@@ -59,6 +63,30 @@ iniciarSesion() {
     });
     this.spinner.hide();
   }
+}
+
+signIn() {
+  this.googleCalendar.signIn()
+    .then(() => {
+      // Manejo después de una autenticación exitosa
+      this.isAuthenticated = true;
+    })
+    .catch((error) => {
+      // Manejo de errores de autenticación
+      console.error('Error en la autenticación', error);
+    });
+}
+
+signOut() {
+  this.googleCalendar.signOut()
+    .then(() => {
+      // Manejo después de cerrar sesión
+      this.isAuthenticated = false;
+    })
+    .catch((error) => {
+      // Manejo de errores al cerrar sesión
+      console.error('Error al cerrar la sesión', error);
+    });
 }
 
 

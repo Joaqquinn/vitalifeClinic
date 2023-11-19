@@ -19,17 +19,14 @@
       <ion-icon name="person-circle" slot="start"></ion-icon>
       <ion-label>Ver Perfil</ion-label>
     </ion-item>
-    <ion-item button (click)="agendarCita()">
-      <ion-icon name="calendar" slot="start"></ion-icon>
-      <ion-label>Agendar Cita</ion-label>
-    </ion-item>
-    <ion-item button (click)="verHistorial()">
-      <ion-icon name="document-text" slot="start"></ion-icon>
-      <ion-label>Historial Médico</ion-label>
-    </ion-item>
+
+
 
     <ion-button [routerLink]="'/camara'">
+
     </ion-button>
+    <button (click)="scheduleAppointment()">Agendar una Cita</button>
+
     <!-- Más elementos según las necesidades de tu aplicación -->
   </ion-list>
 </ion-content>
