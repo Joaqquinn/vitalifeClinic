@@ -27,18 +27,7 @@ export class UserService {
     private storage: Storage
   ) { }
 
-  async getUserProfile(uid: string) {
-    const userRef = doc(this.Firestore, `users/${uid}`);
-    const userSnap = await getDoc(userRef);
 
-    if (userSnap.exists()) {
-      return userSnap.data();
-    } else {
-      // Manejar el caso en que el usuario no existe
-      console.log("No such user!");
-      return null;
-    }
-  }
 
   
 
@@ -62,12 +51,11 @@ export class UserService {
     })
     }
 
-    
 
 
-  login(email:any, password:any){
-    return signInWithEmailAndPassword(this.auth, email, password)
-  }
+    login(email: any, password: any) {
+      return signInWithEmailAndPassword(this.auth, email, password);
+    }
 
   async getUser(email:any){
     const usersRef = collection(this.Firestore, 'users');
