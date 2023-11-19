@@ -1,29 +1,67 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../../../assets/fondooo.png') no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+}
 
-  ion-content.background{
-    --background: url(/assets/fondo.jpg);
-  }
+ion-content {
+  --ion-background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
 
-  ion-modal {
-    --height: 50%;
-    --border-radius: 16px;
-    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+.reset-password-container {
+  background: rgba(255, 255, 255, 0.9); /* Ligero fondo blanco para legibilidad */
+  border-radius: 20px; /* Bordes redondeados para el contenedor */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  padding: 2rem;
+  margin: 2rem;
+  max-width: 400px;
+  width: 90%;
+}
+
+.form-item {
+  background: rgba(0, 0, 0, 0.05); /* Fondo suave para elementos del formulario */
+  margin-bottom: 1rem; /* Espacio entre elementos */
+}
+
+.reset-button {
+  margin-top: 1rem;
+  --ion-color-primary: var(--ion-color-secondary); /* Usa el color secundario para el botón */
+}
+
+.additional-options {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+ion-button {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+@media (min-width: 768px) {
+  .reset-password-container {
+    margin: 4rem;
   }
-  
-  ion-modal::part(backdrop) {
-    background: rgba(209, 213, 219);
-    opacity: 1;
-  }
-  
-  ion-modal ion-toolbar {
-    --background: rgb(14 116 144);
-    --color: white;
-  }
+}
+
+.login-link {
+  margin-top: 1rem;
+  font-size: 0.9em;
+}
+
+.login-link a {
+  color: var(--ion-color-primary);
+  font-weight: bold;
+  text-decoration: none;
+}

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { RecuperarcontraPageRoutingModule } from './recuperarcontra-routing.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { RecuperarcontraPage } from './recuperarcontra.page';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { RecuperarcontraPage } from './recuperarcontra.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     RecuperarcontraPageRoutingModule
   ],
   declarations: [RecuperarcontraPage]
