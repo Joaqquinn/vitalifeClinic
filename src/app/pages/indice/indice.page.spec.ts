@@ -5,11 +5,11 @@ describe('IndicePage', () => {
   let component: IndicePage;
   let fixture: ComponentFixture<IndicePage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(IndicePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
