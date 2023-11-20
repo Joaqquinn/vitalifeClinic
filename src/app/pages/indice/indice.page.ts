@@ -19,6 +19,10 @@ userProfile:any
     this.router.navigate(['/perfil']);
   }
 
+  signOut(){
+    this.userService.logout();
+  }
+
   scheduleAppointment() {
     // Aquí debes tener el objeto del evento con la información de la cita
     const event = {

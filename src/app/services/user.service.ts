@@ -66,7 +66,7 @@ export class UserService {
 
   logout(){
     this.auth.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/paciente']);
     this.usercorreo = undefined;
     this.loggedIn.next(false);
   }

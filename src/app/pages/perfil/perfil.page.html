@@ -11,16 +11,16 @@
   <div class="background-image"></div>
 
   <div class="user-profile">
-    <div class="profile-header">
-      <h2>Perfil del Usuario</h2>
-    </div>
+
     <div class="profile-content">
       <div class="profile-picture">
-        <img src="path_to_profile_picture.jpg" alt="Foto del perfil">
+        <img src="../../../assets/icono.webp" alt="Foto del perfil">
+        <a [routerLink]="'/camara'">Escoger Foto</a>
+
       </div>
       <div class="profile-info">
-        <p><strong>Nombre:</strong> {{ userProfile.nombre }}</p>
-        <p><strong>Email:</strong> {{ userProfile.apellido }}</p>
+        <p><strong>Nombre:</strong> {{ userProfile.nombre }} {{userProfile.apellidoP}}</p>
+        <p><strong>Email:</strong> {{ userProfile.correo }}</p>
         <p><strong>Teléfono:</strong> {{ userProfile.telefono }}</p>
         <!-- Agregar más campos según sea necesario -->
       </div>
