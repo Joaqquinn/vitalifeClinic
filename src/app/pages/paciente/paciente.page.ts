@@ -65,30 +65,6 @@ iniciarSesion() {
   }
 }
 
-signIn() {
-  this.googleCalendar.signIn()
-    .then(() => {
-      // Manejo después de una autenticación exitosa
-      this.isAuthenticated = true;
-    })
-    .catch((error) => {
-      // Manejo de errores de autenticación
-      console.error('Error en la autenticación', error);
-    });
-}
-
-signOut() {
-  this.googleCalendar.signOut()
-    .then(() => {
-      // Manejo después de cerrar sesión
-      this.isAuthenticated = false;
-    })
-    .catch((error) => {
-      // Manejo de errores al cerrar sesión
-      console.error('Error al cerrar la sesión', error);
-    });
-}
-
 
   ngOnInit() {
   }
