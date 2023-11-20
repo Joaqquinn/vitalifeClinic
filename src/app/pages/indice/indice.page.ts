@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, RouterLink } from '@angular/router';
 import { GoogleCalendarServiceService } from 'src/app/services/google-calendar-service.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-indice',
   templateUrl: './indice.page.html',
   styleUrls: ['./indice.page.scss'],
 })
 export class IndicePage implements OnInit {
-
+userProfile:any
   constructor(
     private router : Router,
-    private googleCalendar : GoogleCalendarServiceService
+    private googleCalendar : GoogleCalendarServiceService,
+    private userService : UserService
   ) { }
 
   verPerfil() {
@@ -49,6 +51,8 @@ export class IndicePage implements OnInit {
 
 
   ngOnInit() {
+    this.userProfile=this.userService.currentUser
+
   }
 
 }

@@ -7,7 +7,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Bienvenido/a, [Nombre del Usuario]</ion-card-title>
+      <ion-card-title>Bienvenido/a, {{userProfile.nombre}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       Aquí tienes un resumen rápido de tus actividades.
@@ -20,12 +20,6 @@
       <ion-label>Ver Perfil</ion-label>
     </ion-item>
 
-
-
-    <ion-button [routerLink]="'/camara'">
-
-    </ion-button>
-    <button (click)="scheduleAppointment()">Agendar una Cita</button>
 
     <!-- Más elementos según las necesidades de tu aplicación -->
   </ion-list>

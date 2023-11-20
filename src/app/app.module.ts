@@ -12,6 +12,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   declarations: [AppComponent],
   imports: [BrowserModule, 
+    HttpClientModule,
     IonicModule.forRoot(), 
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
