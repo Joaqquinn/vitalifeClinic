@@ -15,7 +15,7 @@ userProfile : any
   ) { }
 
   ngOnInit() {
-  
+  this.userProfile=this.userService.currentUser
   }
 
 
