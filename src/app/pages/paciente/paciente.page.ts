@@ -30,7 +30,6 @@ this.loginForm = this.fb.group({
 
 correo: ['', [Validators.required, Validators.email]],
 password: ['', Validators.required],})
-
 }
 
 iniciarSesion() {
