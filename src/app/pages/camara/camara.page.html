@@ -1,9 +1,14 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>camara</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Camara</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-content style="--background: none;">
+  <!-- Fondo de degradado -->
+  <div class="background-image"></div> <br>
 <ion-content [fullscreen]="true">
   <ion-button (click)=takePhoto()>Foto</ion-button>
 
