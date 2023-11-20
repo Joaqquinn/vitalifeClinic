@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AgregarmedicoPageRoutingModule } from './agregarmedico-routing.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AgregarmedicoPage } from './agregarmedico.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { AgregarmedicoPage } from './agregarmedico.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AgregarmedicoPageRoutingModule
+    AgregarmedicoPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [AgregarmedicoPage]
 })
