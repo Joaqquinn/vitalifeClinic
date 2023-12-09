@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword,} from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, updatePassword} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { Firestore, collection, addDoc, query, where, getDocs, setDoc, doc, getDoc, docData } from '@angular/fire/firestore';
@@ -87,6 +87,28 @@ export class UserService {
     });
   }
 
+  async updateUser(data:any){
+    const user = this.auth.currentUser;
+    const newPassword = data.password;
+    const usersRef = collection(this.Firestore, 'users');
 
+    if(user != null){
+      updatePassword(user, newPassword).then(() => {
+        console.log('Password updated!');
+      }).catch((error) => {
+        console.log('No se pudo editar: '+ error);
+      });
+    }
+    return await setDoc(doc(usersRef, data.email), {
+            apellidoP: this.currentUser.apellidoP,
+            apellidoM: this.currentUser.apellidoM,
+            edad: this.currentUser.edad,
+            telefono: this.currentUser.telefono,
+            direccion: this.currentUser.direccion,
+            tipoUsuario: this.currentUser.tipoUsuario,
+            nombre: data.username,
+            correo: data.email,
+            password: data.password});
+  }
 
 }

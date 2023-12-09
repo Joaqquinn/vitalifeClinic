@@ -15,6 +15,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
 @NgModule({
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
