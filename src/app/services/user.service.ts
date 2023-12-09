@@ -66,6 +66,7 @@ export class UserService {
     this.auth.signOut();
     this.router.navigate(['/paciente']);
     this.usercorreo = undefined;
+    this.currentUser = undefined;
     this.loggedIn.next(false);
   }
 
@@ -78,7 +79,7 @@ export class UserService {
       const usersRef = collection(this.Firestore, 'users');
       const userDoc = doc(usersRef, this.currentUser.correo);
       setDoc(userDoc, this.currentUser);
-      return this.router.navigate(['/indice']);
+      return this.router.navigate(['/perfil']);
     }).catch((err)=>{
       console.log("ERROR AL OBTENER URL ===> ", err);
       return 'error'
@@ -109,16 +110,30 @@ export class UserService {
         console.log('No se pudo editar: '+ error);
       });
     }
-    await setDoc(doc(usersRef, data.email), {
-            apellidoP: data.apellidoP,
-            apellidoM: data.apellidoM,
-            edad: data.edad,
-            telefono: data.telefono,
-            direccion: data.direccion,
-            tipoUsuario: this.currentUser.tipoUsuario,
-            nombre: data.username,
-            correo: data.email,
-            password: data.password});
+    if(this.currentUser.selfie){
+      await setDoc(doc(usersRef, data.email), {
+        apellidoP: data.apellidoP,
+        apellidoM: data.apellidoM,
+        selfie: this.currentUser.selfie,
+        edad: data.edad,
+        telefono: data.telefono,
+        direccion: data.direccion,
+        tipoUsuario: this.currentUser.tipoUsuario,
+        nombre: data.username,
+        correo: data.email,
+        password: data.password});
+    }else{
+      await setDoc(doc(usersRef, data.email), {
+        apellidoP: data.apellidoP,
+        apellidoM: data.apellidoM,
+        edad: data.edad,
+        telefono: data.telefono,
+        direccion: data.direccion,
+        tipoUsuario: this.currentUser.tipoUsuario,
+        nombre: data.username,
+        correo: data.email,
+        password: data.password});
+    }
     this.refreshUser();
   }
 

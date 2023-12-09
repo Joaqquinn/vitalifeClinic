@@ -14,9 +14,9 @@
 
     <div class="profile-content">
       <div class="profile-picture">
-        <img src="../../../assets/icono.webp" alt="Foto del perfil">
+        <img *ngIf="!this.userService.currentUser.selfie" src="../../../assets/icono.png" alt="Foto del perfil">
+        <img *ngIf="this.userService.currentUser.selfie" src={{this.userService.currentUser.selfie}} alt="Foto del perfil">
         <a [routerLink]="'/camara'">Escoger Foto</a>
-
       </div>
       <div class="profile-info">
         <p><strong>Nombre:</strong> {{ this.userService.currentUser.nombre }} {{this.userService.currentUser.apellidoP}} {{this.userService.currentUser.apellidoM}}</p>

@@ -1,6 +1,7 @@
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 @Component({
   selector: 'app-camara',
@@ -15,7 +16,7 @@ imagen : any
   ) { }
 
   ngOnInit() {
-
+    defineCustomElements(window);
   }
 
   async takePhoto(){
