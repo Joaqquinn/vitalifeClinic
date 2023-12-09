@@ -7,6 +7,11 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export interface User {
   correo: string;
   nombreUsuario: string;
+  apellidoP: string;
+  apellidoM: string;
+  direccion?: string;
+  telefono?: string;
+  edad?: string;
   contrasena: string;
 }
 
@@ -23,12 +28,17 @@ userForm: FormGroup;
 usuario: User = {
   correo: '',
   nombreUsuario: '',
+  apellidoP: '',
+  apellidoM: '',
+  direccion: '',
+  telefono: '',
+  edad: '',
   contrasena: ''
 };
 
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private auth : Auth,
     private modalService: BsModalService,
     private formBuilder: FormBuilder
@@ -40,6 +50,11 @@ usuario: User = {
     this.userForm = this.formBuilder.group({
       correo: [this.userProfile.correo, Validators.required],
       nombreUsuario: [this.userProfile.nombre, Validators.required],
+      apellidoP: [this.userProfile.apellidoP, Validators.required],
+      apellidoM: [this.userProfile.apellidoM, Validators.required],
+      direccion: [this.userProfile.direccion, Validators.required],
+      telefono: [this.userProfile.telefono, Validators.required],
+      edad: [this.userProfile.edad, Validators.required],
       contrasena: [this.userProfile.password, [Validators.required, Validators.minLength(6)]],
       });
   }
@@ -56,6 +71,11 @@ usuario: User = {
     const user = {
       username: this.userForm.value.nombreUsuario,
       password: this.userForm.value.contrasena,
+      apellidoP: this.userForm.value.apellidoP,
+      apellidoM: this.userForm.value.apellidoM,
+      direccion: this.userForm.value.direccion,
+      telefono: this.userForm.value.telefono,
+      edad: this.userForm.value.edad,
       email: this.userForm.value.correo
     }
     console.log('Datos del usuario guardados:', user);
@@ -66,6 +86,21 @@ usuario: User = {
   validationMessages = {
     username: {
       required: 'Debe ingresar un nombre de usuario.'
+    },
+    apellidoP: {
+      required: 'Debe ingresar un apellidos.'
+    },
+    apellidoM: {
+      required: 'Debe ingresar un apellidos.'
+    },
+    direccion: {
+      required: 'Debe ingresar una direccion.'
+    },
+    telefono: {
+      required: 'Debe ingresar un numero de telefono.'
+    },
+    edad: {
+      required: 'Debe ingresar una edad.'
     },
     email: {
       required: 'Debe ingresar un correo electronico.',

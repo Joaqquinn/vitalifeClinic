@@ -12,7 +12,7 @@ userProfile:any
   constructor(
     private router : Router,
     private googleCalendar : GoogleCalendarServiceService,
-    private userService : UserService
+    public userService : UserService
   ) { }
 
   verPerfil() {

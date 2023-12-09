@@ -19,13 +19,15 @@
 
       </div>
       <div class="profile-info">
-        <p><strong>Nombre:</strong> {{ userProfile.nombre }} {{userProfile.apellidoP}}</p>
-        <p><strong>Email:</strong> {{ userProfile.correo }}</p>
-        <p><strong>Teléfono:</strong> {{ userProfile.telefono }}</p>
+        <p><strong>Nombre:</strong> {{ this.userService.currentUser.nombre }} {{this.userService.currentUser.apellidoP}} {{this.userService.currentUser.apellidoM}}</p>
+        <p><strong>Email:</strong> {{ this.userService.currentUser.correo }}</p>
+        <p><strong>Teléfono:</strong> {{ this.userService.currentUser.telefono }}</p>
+        <p><strong>Direccion:</strong> {{ this.userService.currentUser.direccion }}</p>
+        <p><strong>Edad:</strong> {{ this.userService.currentUser.edad }}</p>
         <!-- Agregar más campos según sea necesario -->
       </div>
       <button type="button" class="button-edit mt-5" (click)="openModal(template)">
-        Editar
+        Editar perfil
       </button>
     </div>
   </div>
@@ -46,11 +48,56 @@
           </div>
         </div>
         <div class="info-field">
-          <label>Nombre de Usuario:</label>
+          <label>Nombre:</label>
           <div class="input-container">
             <input type="text" formControlName="nombreUsuario">
             <div *ngIf="userForm.get('nombreUsuario')?.hasError('required') && userForm.get('nombreUsuario')?.dirty" class="validation-message">
               {{ validationMessages.username.required }}
+            </div>
+          </div>
+        </div>
+        <div class="info-field">
+          <label>Apellido paterno:</label>
+          <div class="input-container">
+            <input type="text" formControlName="apellidoP">
+            <div *ngIf="userForm.get('apellidoP')?.hasError('required') && userForm.get('apellidoP')?.dirty" class="validation-message">
+              {{ validationMessages.apellidoP.required }}
+            </div>
+          </div>
+        </div>
+        <div class="info-field">
+          <label>Apellido materno:</label>
+          <div class="input-container">
+            <input type="text" formControlName="apellidoM">
+            <div *ngIf="userForm.get('apellidoM')?.hasError('required') && userForm.get('apellidoM')?.dirty" class="validation-message">
+              {{ validationMessages.apellidoM.required }}
+            </div>
+          </div>
+        </div>
+        <div class="info-field">
+          <label>Direccion:</label>
+          <div class="input-container">
+            <input type="text" formControlName="direccion">
+            <div *ngIf="userForm.get('direccion')?.hasError('required') && userForm.get('direccion')?.dirty" class="validation-message">
+              {{ validationMessages.direccion.required }}
+            </div>
+          </div>
+        </div>
+        <div class="info-field">
+          <label>Telefono:</label>
+          <div class="input-container">
+            <input type="text" formControlName="telefono">
+            <div *ngIf="userForm.get('telefono')?.hasError('required') && userForm.get('telefono')?.dirty" class="validation-message">
+              {{ validationMessages.telefono.required }}
+            </div>
+          </div>
+        </div>
+        <div class="info-field">
+          <label>Edad:</label>
+          <div class="input-container">
+            <input type="text" formControlName="edad">
+            <div *ngIf="userForm.get('edad')?.hasError('required') && userForm.get('edad')?.dirty" class="validation-message">
+              {{ validationMessages.edad.required }}
             </div>
           </div>
         </div>
@@ -71,9 +118,8 @@
         </div>
       </form>
     </div>
-  
-  
+
+
   </ng-template>
 
-  
-  
+
