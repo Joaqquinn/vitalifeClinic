@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router, RouterLink } from '@angular/router';
 import { GoogleCalendarServiceService } from 'src/app/services/google-calendar-service.service';
 import { UserService } from 'src/app/services/user.service';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { Toast } from '@capacitor/toast';
 @Component({
   selector: 'app-indice',
   templateUrl: './indice.page.html',
@@ -52,11 +54,16 @@ userProfile:any
   }
 
 
-
+  async showToast() {
+    await Toast.show({
+      text: 'Bienvenid@!'
+    });
+  }
 
   ngOnInit() {
+    defineCustomElements(window);
+    this.showToast();
     this.userProfile=this.userService.currentUser
-
   }
 
 }
