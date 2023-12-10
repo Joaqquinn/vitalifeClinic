@@ -13,7 +13,7 @@ import { switchMap,map,tap } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
+  
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   currentUser:any;
@@ -28,6 +28,8 @@ export class UserService {
   ) { }
 
 
+
+  
 
   register(email:any, password:any){
     return createUserWithEmailAndPassword(this.auth, email, password);
@@ -66,7 +68,6 @@ export class UserService {
     this.auth.signOut();
     this.router.navigate(['/paciente']);
     this.usercorreo = undefined;
-    this.currentUser = undefined;
     this.loggedIn.next(false);
   }
 
@@ -79,22 +80,10 @@ export class UserService {
       const usersRef = collection(this.Firestore, 'users');
       const userDoc = doc(usersRef, this.currentUser.correo);
       setDoc(userDoc, this.currentUser);
-      return this.router.navigate(['/perfil']);
+      return this.router.navigate(['/indice']);
     }).catch((err)=>{
       console.log("ERROR AL OBTENER URL ===> ", err);
       return 'error'
-    });
-  }
-
-  async refreshUser(){
-    this.getUser(this.currentUser.correo).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-        this.currentUser = doc.data();
-      });
-      console.log(this.currentUser);
-    }).catch((error) => {
-      console.log(error);
     });
   }
 
@@ -110,31 +99,16 @@ export class UserService {
         console.log('No se pudo editar: '+ error);
       });
     }
-    if(this.currentUser.selfie){
-      await setDoc(doc(usersRef, data.email), {
-        apellidoP: data.apellidoP,
-        apellidoM: data.apellidoM,
-        selfie: this.currentUser.selfie,
-        edad: data.edad,
-        telefono: data.telefono,
-        direccion: data.direccion,
-        tipoUsuario: this.currentUser.tipoUsuario,
-        nombre: data.username,
-        correo: data.email,
-        password: data.password});
-    }else{
-      await setDoc(doc(usersRef, data.email), {
-        apellidoP: data.apellidoP,
-        apellidoM: data.apellidoM,
-        edad: data.edad,
-        telefono: data.telefono,
-        direccion: data.direccion,
-        tipoUsuario: this.currentUser.tipoUsuario,
-        nombre: data.username,
-        correo: data.email,
-        password: data.password});
-    }
-    this.refreshUser();
+    return await setDoc(doc(usersRef, data.email), {
+            apellidoP: this.currentUser.apellidoP,
+            apellidoM: this.currentUser.apellidoM,
+            edad: this.currentUser.edad,
+            telefono: this.currentUser.telefono,
+            direccion: this.currentUser.direccion,
+            tipoUsuario: this.currentUser.tipoUsuario,
+            nombre: data.username,
+            correo: data.email,
+            password: data.password});
   }
 
 }

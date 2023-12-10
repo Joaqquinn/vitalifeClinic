@@ -25,6 +25,10 @@ userProfile:any
     this.userService.logout();
   }
 
+  tomarHora(){
+    this.router.navigate(['/horamedica']);
+  }
+
   scheduleAppointment() {
     // Aquí debes tener el objeto del evento con la información de la cita
     const event = {

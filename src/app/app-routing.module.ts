@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'horamedica',
+    loadChildren: () => import('./pages/horamedica/horamedica.module').then( m => m.HoramedicaPageModule)
+  },
 
 
 

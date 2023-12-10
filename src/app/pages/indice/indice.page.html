@@ -23,8 +23,18 @@
       <ion-icon name="person-circle" slot="start"></ion-icon>
       <ion-label>Cerrar Sesión</ion-label>
     </ion-item>
-
-
+    <ion-item button (click)="tomarHora()">
+      <ion-icon name="person-circle" slot="start"></ion-icon>
+      <ion-label>Tomar hora médica</ion-label>
+    </ion-item>
+    <!-- Más elementos según las necesidades de tu aplicación -->
+  </ion-list>
+  <br>
+  <ion-list *ngIf="this.userService.currentUser.tipoUsuario === 'administrador'">
+    <ion-item button (click)="verPerfil()">
+      <ion-icon name="person-circle" slot="start"></ion-icon>
+      <ion-label>Administrar Usuarios</ion-label>
+    </ion-item>
     <!-- Más elementos según las necesidades de tu aplicación -->
   </ion-list>
 </ion-content>
