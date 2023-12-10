@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pacientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let paciente of this.userService.pacientes" (click)="verPaciente(paciente)">
+      <ion-avatar slot="start">
+        <img *ngIf="paciente.selfie" [src]="paciente.selfie">
+        <img *ngIf="!paciente.selfie" src="../../../assets/icono.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{paciente.nombre}} {{paciente.apellidoP}}</h2>
+        <p>{{paciente.correo}}</p>
+        <ion-button color="danger" (click)="eliminarPaciente(paciente)">Eliminar usuario</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="agregarPaciente()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

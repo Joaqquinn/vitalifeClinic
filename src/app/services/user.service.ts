@@ -7,17 +7,20 @@ import { BehaviorSubject, of } from 'rxjs';
 import { getDownloadURL } from 'firebase/storage';
 import { Observable } from 'rxjs';
 import { switchMap,map,tap } from 'rxjs';
+import { deleteDoc } from 'firebase/firestore';
+const admin = require('firebase-admin');
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  
+
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   currentUser:any;
   usercorreo : any
+  pacientes : any = [];
 
 
   constructor(
@@ -27,17 +30,13 @@ export class UserService {
     private storage: Storage
   ) { }
 
-
-
-  
-
   register(email:any, password:any){
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
     async createUser(data:any, tipoUsuario:any){
       const usersRef = collection(this.Firestore,'users');
-      return await setDoc(doc(usersRef, data.correo),{
+      await setDoc(doc(usersRef, data.correo),{
             nombre : data.nombre,
             apellidoP: data.apellidoP,
             apellidoM: data.apellidoM,
@@ -47,8 +46,8 @@ export class UserService {
             direccion: data.direccion,
             password: data.password,
             tipoUsuario : tipoUsuario
-
     })
+    this.getPacientes();
     }
 
 
@@ -80,7 +79,7 @@ export class UserService {
       const usersRef = collection(this.Firestore, 'users');
       const userDoc = doc(usersRef, this.currentUser.correo);
       setDoc(userDoc, this.currentUser);
-      return this.router.navigate(['/indice']);
+      return this.router.navigate(['/perfil']);
     }).catch((err)=>{
       console.log("ERROR AL OBTENER URL ===> ", err);
       return 'error'
@@ -99,16 +98,71 @@ export class UserService {
         console.log('No se pudo editar: '+ error);
       });
     }
-    return await setDoc(doc(usersRef, data.email), {
-            apellidoP: this.currentUser.apellidoP,
-            apellidoM: this.currentUser.apellidoM,
-            edad: this.currentUser.edad,
-            telefono: this.currentUser.telefono,
-            direccion: this.currentUser.direccion,
-            tipoUsuario: this.currentUser.tipoUsuario,
-            nombre: data.username,
-            correo: data.email,
-            password: data.password});
+    if(this.currentUser.selfie){
+
+      await setDoc(doc(usersRef, data.email), {
+        apellidoP: data.apellidoP,
+        selfie: this.currentUser.selfie,
+        apellidoM: data.apellidoM,
+        edad: data.edad,
+        telefono: data.telefono,
+        direccion: data.direccion,
+        tipoUsuario: this.currentUser.tipoUsuario,
+        nombre: data.username,
+        correo: data.email,
+        password: data.password});
+this.currentUser.nombre = data.username;
+this.currentUser.correo = data.email;
+this.currentUser.password = data.password;
+this.currentUser.apellidoP = data.apellidoP;
+this.currentUser.apellidoM = data.apellidoM;
+this.currentUser.edad = data.edad;
+this.currentUser.telefono = data.telefono;
+this.currentUser.direccion = data.direccion;
+console.log('Datos del usuario guardados:', data);
+
+    }else{
+      await setDoc(doc(usersRef, data.email), {
+        apellidoP: data.apellidoP,
+        apellidoM: data.apellidoM,
+        edad: data.edad,
+        telefono: data.telefono,
+        direccion: data.direccion,
+        tipoUsuario: this.currentUser.tipoUsuario,
+        nombre: data.username,
+        correo: data.email,
+        password: data.password});
+this.currentUser.nombre = data.username;
+this.currentUser.correo = data.email;
+this.currentUser.password = data.password;
+this.currentUser.apellidoP = data.apellidoP;
+this.currentUser.apellidoM = data.apellidoM;
+this.currentUser.edad = data.edad;
+this.currentUser.telefono = data.telefono;
+this.currentUser.direccion = data.direccion;
+console.log('Datos del usuario guardados:', data);
+    }
+
   }
 
+  getPacientes(){
+    this.pacientes = [];
+    const usersRef = collection(this.Firestore, 'users');
+    const userQuery = query(usersRef, where('tipoUsuario', '==', 'paciente'));
+    return getDocs(userQuery).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, ' => ', doc.data());
+        this.pacientes.push(doc.data());
+      });
+    });
+  }
+
+  eliminarUsuario(correo:any){
+    admin.auth().deleteUser(correo).then(() => {
+      const userRef = doc(this.Firestore, 'users', correo);
+      return deleteDoc(userRef);
+    }).catch((error:any) => {
+      console.log('No se pudo eliminar: '+ error);
+    });
+  }
 }

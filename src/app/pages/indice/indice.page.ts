@@ -29,6 +29,14 @@ userProfile:any
     this.router.navigate(['/horamedica']);
   }
 
+  verPacientes(){
+    this.router.navigate(['/mostrarpacientes']);
+  }
+
+  verMedicos(){
+    this.router.navigate(['/mostrarmedicos']);
+  }
+
   scheduleAppointment() {
     // Aquí debes tener el objeto del evento con la información de la cita
     const event = {

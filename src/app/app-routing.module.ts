@@ -87,6 +87,18 @@ const routes: Routes = [
     path: 'horamedica',
     loadChildren: () => import('./pages/horamedica/horamedica.module').then( m => m.HoramedicaPageModule)
   },
+  {
+    path: 'mostrarpacientes',
+    loadChildren: () => import('./pages/mostrarpacientes/mostrarpacientes.module').then( m => m.MostrarpacientesPageModule)
+  },
+  {
+    path: 'mostrarmedicos',
+    loadChildren: () => import('./pages/mostrarmedicos/mostrarmedicos.module').then( m => m.MostrarmedicosPageModule)
+  },
+  {
+    path: 'registrarmedico',
+    loadChildren: () => import('./pages/registrarmedico/registrarmedico.module').then( m => m.RegistrarmedicoPageModule)
+  },
 
 
 

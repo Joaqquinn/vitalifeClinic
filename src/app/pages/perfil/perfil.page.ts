@@ -21,7 +21,6 @@ export interface User {
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-userProfile : any
 modalRef?: BsModalRef;
 userForm: FormGroup;
 
@@ -43,24 +42,22 @@ usuario: User = {
     private modalService: BsModalService,
     private formBuilder: FormBuilder
   ) {
-    this.userProfile=this.userService.currentUser
-    this.usuario.correo = this.userProfile.email;
-    this.usuario.nombreUsuario = this.userProfile.username;
-    this.usuario.contrasena = this.userProfile.password;
+    this.usuario.correo = this.userService.currentUser.email;
+    this.usuario.nombreUsuario = this.userService.currentUser.username;
+    this.usuario.contrasena = this.userService.currentUser.password;
     this.userForm = this.formBuilder.group({
-      correo: [this.userProfile.correo, Validators.required],
-      nombreUsuario: [this.userProfile.nombre, Validators.required],
-      apellidoP: [this.userProfile.apellidoP, Validators.required],
-      apellidoM: [this.userProfile.apellidoM, Validators.required],
-      direccion: [this.userProfile.direccion, Validators.required],
-      telefono: [this.userProfile.telefono, Validators.required],
-      edad: [this.userProfile.edad, Validators.required],
-      contrasena: [this.userProfile.password, [Validators.required, Validators.minLength(6)]],
+      correo: [this.userService.currentUser.correo, Validators.required],
+      nombreUsuario: [this.userService.currentUser.nombre, Validators.required],
+      apellidoP: [this.userService.currentUser.apellidoP, Validators.required],
+      apellidoM: [this.userService.currentUser.apellidoM, Validators.required],
+      direccion: [this.userService.currentUser.direccion, Validators.required],
+      telefono: [this.userService.currentUser.telefono, Validators.required],
+      edad: [this.userService.currentUser.edad, Validators.required],
+      contrasena: [this.userService.currentUser.password, [Validators.required, Validators.minLength(6)]],
       });
   }
 
   ngOnInit() {
-    this.userProfile=this.userService.currentUser
   }
 
   openModal(template: TemplateRef<any>) {
