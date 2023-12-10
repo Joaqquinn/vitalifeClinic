@@ -3,7 +3,8 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Médicos</ion-title>
+    <ion-title *ngIf="this.userService.currentUser.tipoUsuario === 'administrador'">Médicos</ion-title>
+    <ion-title *ngIf="this.userService.currentUser.tipoUsuario === 'paciente'">Agendar hora</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,12 +18,13 @@
       <ion-label>
         <h2>{{medico.nombre}} {{medico.apellidoP}}</h2>
         <p>{{medico.correo}}</p>
-        <ion-button color="danger" (click)="eliminarMedico(medico)">Eliminar usuario</ion-button>
+        <ion-button *ngIf="this.userService.currentUser.tipoUsuario === 'administrador'" color="danger" (click)="eliminarMedico(medico)">Eliminar usuario</ion-button>
+        <ion-button *ngIf="this.userService.currentUser.tipoUsuario === 'paciente'" color="primary" >Tomar hora</ion-button>
       </ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="this.userService.currentUser.tipoUsuario === 'administrador'" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="agregarMedico()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

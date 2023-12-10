@@ -7,6 +7,7 @@ import { GoogleCalendarServiceService } from 'src/app/services/google-calendar-s
 import { Firestore, collection, addDoc, query, where, getDocs, setDoc, doc, getDoc, docData } from '@angular/fire/firestore';
 import { UserService } from 'src/app/services/user.service';
 import { user } from '@angular/fire/auth';
+import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-paciente',
@@ -53,7 +54,6 @@ iniciarSesion() {
         });
         this.loginForm.reset();
         this.error = false;
-        this.loginForm.reset();
       }).catch((error) => {
         this.spinner.hide();
         this.error = true;

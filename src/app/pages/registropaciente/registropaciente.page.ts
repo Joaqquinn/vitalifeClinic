@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-registropaciente',
@@ -41,6 +42,9 @@ export class RegistropacientePage implements OnInit {
         this.userService.createUser(data,'paciente').then((res) => {
           console.log('Usuario creado en la base de datos: ' + res);
           this.spinner.hide();
+          Toast.show({
+            text: 'Registrado correctamente!'
+          });
           this.router.navigate(['/paciente']);
           this.registerForm.reset();
         }).catch((err) => {

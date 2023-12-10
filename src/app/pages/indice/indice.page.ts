@@ -26,7 +26,7 @@ userProfile:any
   }
 
   tomarHora(){
-    this.router.navigate(['/horamedica']);
+    this.router.navigate(['/mostrarmedicos']);
   }
 
   verPacientes(){
