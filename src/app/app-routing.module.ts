@@ -65,10 +65,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/agregarmedico/agregarmedico.module').then( m => m.AgregarmedicoPageModule)
   },
   {
-    path: 'registrarmedico',
-    loadChildren: () => import('./pages/agregarmedico/agregarmedico.module').then( m => m.AgregarmedicoPageModule)
-  },
-  {
     path: 'agregarmedico',
     loadChildren: () => import('./pages/agregarmedico/agregarmedico.module').then( m => m.AgregarmedicoPageModule)
   },
@@ -79,7 +75,8 @@ const routes: Routes = [
   {
     path: 'indice',
     loadChildren: () => import('./pages/indice/indice.module').then( m => m.IndicePageModule)
-  },  {
+  },
+  {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registro de Paciente</ion-title>
+    <ion-title>Registro de Medico</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -73,13 +73,8 @@
         </ion-item>
 
       </ion-list>
-      <ion-button type="submit" [disabled]="!registerForm.valid" expand="full">Registrarse</ion-button>
+      <ion-button type="submit" [disabled]="!registerForm.valid" expand="full">Registrar medico</ion-button>
     </form>
-
-     <!-- Opciones adicionales -->
-     <div class="additional-options">
-      <ion-button [routerLink]="'/paciente'" fill="clear">¿Ya tienes cuenta? Inicia sesión</ion-button>
-    </div>
   </div>
 </ion-content>
 

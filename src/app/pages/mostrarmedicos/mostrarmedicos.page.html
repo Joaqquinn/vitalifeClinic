@@ -1,13 +1,30 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>mostrarmedicos</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Médicos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mostrarmedicos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let medico of this.userService.medicos">
+      <ion-avatar slot="start">
+        <img *ngIf="medico.selfie" [src]="medico.selfie">
+        <img *ngIf="!medico.selfie" src="../../../assets/icono.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{medico.nombre}} {{medico.apellidoP}}</h2>
+        <p>{{medico.correo}}</p>
+        <ion-button color="danger" (click)="eliminarMedico(medico)">Eliminar usuario</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="agregarMedico()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

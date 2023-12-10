@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let paciente of this.userService.pacientes" (click)="verPaciente(paciente)">
+    <ion-item *ngFor="let paciente of this.userService.pacientes">
       <ion-avatar slot="start">
         <img *ngIf="paciente.selfie" [src]="paciente.selfie">
         <img *ngIf="!paciente.selfie" src="../../../assets/icono.png">
@@ -21,10 +21,4 @@
       </ion-label>
     </ion-item>
   </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="agregarPaciente()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

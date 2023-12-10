@@ -8,7 +8,6 @@ import { getDownloadURL } from 'firebase/storage';
 import { Observable } from 'rxjs';
 import { switchMap,map,tap } from 'rxjs';
 import { deleteDoc } from 'firebase/firestore';
-const admin = require('firebase-admin');
 
 
 @Injectable({
@@ -21,6 +20,8 @@ export class UserService {
   currentUser:any;
   usercorreo : any
   pacientes : any = [];
+  usuarios : any = [];
+  medicos : any = [];
 
 
   constructor(
@@ -157,12 +158,33 @@ console.log('Datos del usuario guardados:', data);
     });
   }
 
-  eliminarUsuario(correo:any){
-    admin.auth().deleteUser(correo).then(() => {
-      const userRef = doc(this.Firestore, 'users', correo);
-      return deleteDoc(userRef);
-    }).catch((error:any) => {
-      console.log('No se pudo eliminar: '+ error);
+  getMedicos(){
+    this.medicos = [];
+    const usersRef = collection(this.Firestore, 'users');
+    const userQuery = query(usersRef, where('tipoUsuario', '==', 'medico'));
+    return getDocs(userQuery).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, ' => ', doc.data());
+        this.medicos.push(doc.data());
+      });
     });
+  }
+
+  getUsuarios(){
+    this.usuarios = [];
+    const usersRef = collection(this.Firestore, 'users');
+    return getDocs(usersRef).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, ' => ', doc.data());
+        this.usuarios.push(doc.data());
+      });
+    });
+  }
+
+  eliminarUsuario(correo:any){
+    const userRef = doc(this.Firestore, 'users', correo);
+    deleteDoc(userRef);
+    this.getPacientes();
+    this.getMedicos();
   }
 }
