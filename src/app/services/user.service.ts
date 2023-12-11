@@ -22,6 +22,7 @@ export class UserService {
   pacientes : any = [];
   usuarios : any = [];
   medicos : any = [];
+  feachasAgendadas : any = [];
 
 
   constructor(
@@ -181,10 +182,36 @@ console.log('Datos del usuario guardados:', data);
     });
   }
 
+  getFechas(medico:any){
+    this.feachasAgendadas = [];
+    const usersRef = collection(this.Firestore, 'agendadas');
+    const userQuery = query(usersRef, where('correoMedico', '==', medico.correo));
+    return getDocs(userQuery).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.feachasAgendadas.push(doc.data()['fechaAgendada']);
+      });
+      console.log(this.feachasAgendadas)
+    });
+  }
+
   eliminarUsuario(correo:any){
     const userRef = doc(this.Firestore, 'users', correo);
     deleteDoc(userRef);
     this.getPacientes();
     this.getMedicos();
   }
+
+  async agendarHora(medico:any, fecha:string){
+    const agendaRef = collection(this.Firestore,'agendadas');
+      await setDoc(doc(agendaRef),{
+            nombrePaciente : this.currentUser.nombre + " " + this.currentUser.apellidoP + " " + this.currentUser.apellidoM,
+            correoPaciente :this.currentUser.correo,
+            telefonoPaciente :this.currentUser.telefono,
+            nombreMedico: medico.nombre + " " + medico.apellidoP + " " + medico.apellidoM,
+            correoMedico: medico.correo,
+            telefonoMedico: medico.telefono,
+            fechaAgendada: fecha
+    })
+  }
+
 }

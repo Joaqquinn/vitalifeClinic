@@ -14,8 +14,9 @@ export class MostrarmedicosPage implements OnInit {
   @ViewChild('datePicker') datePicker!: IonDatetime;
   @ViewChild(IonModal) modal!: IonModal;
   isModalOpen = false;
-  selectedMedico:string = "";
+  selectedMedico:any;
   selectedDate: string | null = null;
+  disablesDates: any[] = [];
 
   constructor(public userService:UserService,
               private router:Router) {
@@ -27,17 +28,12 @@ export class MostrarmedicosPage implements OnInit {
   }
 
   disabledDates = (dateString: string) => {
-    const disabledDates = [
-      '2023-12-21T00:00:00',
-      '2023-12-22T00:00:00',
-      '2023-12-23T00:00:00',
-      '2024-01-11T00:00:00'
-    ]; // Array of disabled dates
+    const disabledDates: string[] = this.userService.feachasAgendadas;
 
     const selectedDate = new Date(dateString);
 
     // Check if the selected date is in the array of disabled dates
-    return !disabledDates.some(disabledDate => {
+    return !disabledDates.some((disabledDate: string) => {
       const disabledDateTime = new Date(disabledDate);
       return (
         selectedDate.getUTCFullYear() === disabledDateTime.getUTCFullYear() &&
@@ -48,17 +44,29 @@ export class MostrarmedicosPage implements OnInit {
   };
 
   abrirCalendario(medico:any){
-    this.setOpen(true)
-    this.selectedMedico = medico.nombre + " " + medico.apellidoP
+    this.selectedMedico = medico
+    this.userService.getFechas(medico).then(()=>{
+      this.setOpen(true)
+    })
   }
 
   cancel() {
     this.setOpen(false)
+    this.userService.feachasAgendadas = []
   }
 
   confirm() {
+    console.log(this.selectedMedico)
     this.setOpen(false)
     console.log(this.selectedDate)
+    if(this.selectedDate !== null){
+      this.userService.agendarHora(this.selectedMedico, this.selectedDate)
+      console.log("Cita agendada")
+    }else{
+      console.log("no se selecciono fecha")
+    }
+    this.selectedDate = null
+    this.selectedMedico = null
   }
 
   onDateChange(event:any) {
