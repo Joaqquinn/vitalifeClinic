@@ -3,6 +3,7 @@ import { RouterLink, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { IonDatetime, IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-mostrarmedicos',
@@ -65,6 +66,10 @@ export class MostrarmedicosPage implements OnInit {
     }else{
       console.log("no se selecciono fecha")
     }
+    Toast.show({
+      text: 'Hora agendada',
+      duration: 'long'
+    })
     this.selectedDate = null
     this.selectedMedico = null
   }

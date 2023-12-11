@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HorastomadasPageRoutingModule } from './horastomadas-routing.module';
 
 import { HorastomadasPage } from './horastomadas.page';
+import { FechasPipe } from 'src/app/pipes/fechas.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HorastomadasPage } from './horastomadas.page';
     IonicModule,
     HorastomadasPageRoutingModule
   ],
-  declarations: [HorastomadasPage]
+  declarations: [HorastomadasPage, FechasPipe]
 })
 export class HorastomadasPageModule {}

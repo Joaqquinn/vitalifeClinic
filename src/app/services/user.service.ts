@@ -230,4 +230,16 @@ console.log('Datos del usuario guardados:', data);
     this.getFechasPaciente();
   }
 
+  eliminarHora(hora:any){
+    const collRef = collection(this.Firestore, 'agendadas');
+    const dateQuery = query(collRef, where('correoMedico', '==', hora.correoMedico), where('fechaAgendada', '==', hora.fechaAgendada),
+    where('correoPaciente', '==', hora.correoPaciente));
+    getDocs(dateQuery).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        deleteDoc(doc.ref);
+        this.getFechasPaciente();
+      });
+    });
+  }
+
 }
