@@ -9,7 +9,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-list *ngIf="!this.userService.medicos">
+    <ion-item>
+      <ion-label>
+        <p>No hay medicos registrados</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="this.userService.medicos">
     <ion-item *ngFor="let medico of this.userService.medicos">
       <ion-avatar slot="start">
         <img *ngIf="medico.selfie" [src]="medico.selfie">

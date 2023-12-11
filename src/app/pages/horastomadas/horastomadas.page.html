@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-list *ngIf="this.userService.horasPaciente">
     <ion-item *ngFor="let hora of this.userService.horasPaciente">
       <ion-avatar slot="start">
         <img *ngIf="hora.fotoMedico" [src]="hora.fotoMedico">
@@ -19,6 +19,13 @@
         <p>Medico: {{hora.nombreMedico}}</p>
         <p>Fecha: {{hora.fechaAgendada | fechas}}</p>
         <ion-button color="danger" (click)="eliminarHora(hora)">Cancelar hora</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="!this.userService.horasPaciente">
+    <ion-item>
+      <ion-label>
+        <p>No tienes horas agendadas</p>
       </ion-label>
     </ion-item>
   </ion-list>
