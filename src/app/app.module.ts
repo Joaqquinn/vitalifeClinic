@@ -13,6 +13,8 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 
 
@@ -20,15 +22,16 @@ import { HttpClientModule } from '@angular/common/http';
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   declarations: [AppComponent],
-  imports: [BrowserModule, 
+  imports: [BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    MatDatepickerModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
