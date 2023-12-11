@@ -3,53 +3,22 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Horas tomadas</ion-title>
+    <ion-title>Horas agendadas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="backgorund">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">horas tomadas</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Nombre del paciente</ion-card-title>
-      <ion-card-subtitle>correo  / numero telefono</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      Descripcion del problema que posee, observaciones, etc
-    </ion-card-content>
-  
-    <ion-button fill="danger">Modificar hora</ion-button>
-    <ion-button fill="clear">Cancelar hora</ion-button>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Nombre del paciente</ion-card-title>
-      <ion-card-subtitle>correo</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      Breve descipcion.
-    </ion-card-content>
-  
-    <ion-button fill="danger">Modificar hora</ion-button>
-    <ion-button fill="clear">Cancelar hora</ion-button>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Nombre del paciente</ion-card-title>
-      <ion-card-subtitle>n° de telefono</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      breve descripcion.
-    </ion-card-content>
-  
-    <ion-button fill="danger">Modificar hora</ion-button>
-    <ion-button fill="clear">Cancelar hora</ion-button>
-  </ion-card>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let hora of this.userService.horasPaciente">
+      <ion-avatar slot="start">
+        <img *ngIf="hora.fotoMedico" [src]="hora.fotoMedico">
+        <img *ngIf="!hora.fotoMedico" src="../../../assets/icono.png">
+      </ion-avatar>
+      <ion-label>
+        <p>Paciente: {{hora.nombrePaciente}}</p>
+        <p>Medico: {{hora.nombreMedico}}</p>
+        <p>Fecha: {{hora.fechaAgendada | date}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

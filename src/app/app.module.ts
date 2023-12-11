@@ -14,6 +14,8 @@ import { environment } from '../environments/environment';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from './pipes/date.pipe';
+import { FechasPipe } from './pipes/fechas.pipe';
 
 
 
@@ -21,7 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [AppComponent],
+  declarations: [AppComponent, DatePipe, FechasPipe],
   imports: [BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),

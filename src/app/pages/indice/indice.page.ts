@@ -37,6 +37,10 @@ userProfile:any
     this.router.navigate(['/mostrarmedicos']);
   }
 
+  verHoras(){
+    this.router.navigate(['/horastomadas']);
+  }
+
   scheduleAppointment() {
     // Aquí debes tener el objeto del evento con la información de la cita
     const event = {

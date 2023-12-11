@@ -23,6 +23,7 @@ export class UserService {
   usuarios : any = [];
   medicos : any = [];
   feachasAgendadas : any = [];
+  horasPaciente : any = [];
 
 
   constructor(
@@ -69,6 +70,7 @@ export class UserService {
     this.auth.signOut();
     this.router.navigate(['/paciente']);
     this.usercorreo = undefined;
+    this.horasPaciente = [];
     this.loggedIn.next(false);
   }
 
@@ -194,6 +196,18 @@ console.log('Datos del usuario guardados:', data);
     });
   }
 
+  getFechasPaciente(){
+    this.horasPaciente = [];
+    const usersRef = collection(this.Firestore, 'agendadas');
+    const userQuery = query(usersRef, where('correoPaciente', '==', this.currentUser.correo));
+    return getDocs(userQuery).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.horasPaciente.push(doc.data());
+      });
+      console.log(this.horasPaciente)
+    });
+  }
+
   eliminarUsuario(correo:any){
     const userRef = doc(this.Firestore, 'users', correo);
     deleteDoc(userRef);
@@ -210,8 +224,10 @@ console.log('Datos del usuario guardados:', data);
             nombreMedico: medico.nombre + " " + medico.apellidoP + " " + medico.apellidoM,
             correoMedico: medico.correo,
             telefonoMedico: medico.telefono,
+            fotoMedico: medico.selfie,
             fechaAgendada: fecha
     })
+    this.getFechasPaciente();
   }
 
 }

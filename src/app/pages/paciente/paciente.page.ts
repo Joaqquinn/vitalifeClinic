@@ -50,6 +50,7 @@ iniciarSesion() {
           console.log(doc.data());
           this.userService.currentUser = doc.data();
           this.spinner.hide();
+          this.userService.getFechasPaciente();
           this.router.navigate(['/indice']);
         });
         this.loginForm.reset();
