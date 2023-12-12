@@ -22,6 +22,7 @@ export class RegistrarmedicoPage implements OnInit {
   ) {
     this.registerForm = this.fb.group({
       nombre: ['', Validators.required],
+      espocialidad: ['', Validators.required],
       apellidoP: ['', Validators.required],
       apellidoM: ['', Validators.required],
       edad:['', Validators.required],

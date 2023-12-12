@@ -42,7 +42,6 @@ export class UserService {
       await setDoc(doc(usersRef, data.correo),{
             nombre : data.nombre,
             apellidoP: data.apellidoP,
-            apellidoM: data.apellidoM,
             edad: data.edad,
             correo :data.correo,
             telefono :data.telefono,
@@ -107,7 +106,6 @@ export class UserService {
       await setDoc(doc(usersRef, data.email), {
         apellidoP: data.apellidoP,
         selfie: this.currentUser.selfie,
-        apellidoM: data.apellidoM,
         edad: data.edad,
         telefono: data.telefono,
         direccion: data.direccion,
@@ -128,7 +126,6 @@ console.log('Datos del usuario guardados:', data);
     }else{
       await setDoc(doc(usersRef, data.email), {
         apellidoP: data.apellidoP,
-        apellidoM: data.apellidoM,
         edad: data.edad,
         telefono: data.telefono,
         direccion: data.direccion,

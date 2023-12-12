@@ -18,6 +18,13 @@
       <ion-list>
 
         <ion-item class="formGroup">
+          <ion-label for="especialidad" position="floating">Especialidad</ion-label>
+          <ion-input type="text" class="form-control" id="especialidad" formControlName="especialidad" placeholder="Ingrese su especialidad"></ion-input>
+          <div *ngIf="registerForm.get('especialidad')?.hasError('required') && registerForm.get('especialidad')?.dirty">
+          </div>
+        </ion-item>
+
+        <ion-item class="formGroup">
           <ion-label for="nombre" position="floating">Nombre</ion-label>
           <ion-input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ingrese su nombre"></ion-input>
           <div *ngIf="registerForm.get('nombre')?.hasError('required') && registerForm.get('nombre')?.dirty">

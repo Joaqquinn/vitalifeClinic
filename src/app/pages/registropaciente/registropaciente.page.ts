@@ -24,7 +24,6 @@ export class RegistropacientePage implements OnInit {
     this.registerForm = this.fb.group({
       nombre: ['', Validators.required],
       apellidoP: ['', Validators.required],
-      apellidoM: ['', Validators.required],
       edad:['', Validators.required],
       telefono: ['', Validators.required],
       direccion: ['', Validators.required],
