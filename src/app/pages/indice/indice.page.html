@@ -19,7 +19,7 @@
       <ion-icon name="person-circle" slot="start"></ion-icon>
       <ion-label>Ver Perfil</ion-label>
     </ion-item>
-    <ion-item button (click)="tomarHora()">
+    <ion-item *ngIf="this.userService.currentUser.tipoUsuario === 'paciente'" button (click)="tomarHora()">
       <ion-icon name="person-circle" slot="start"></ion-icon>
       <ion-label>Tomar hora médica</ion-label>
     </ion-item>

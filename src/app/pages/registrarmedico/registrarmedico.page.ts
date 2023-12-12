@@ -28,8 +28,21 @@ export class RegistrarmedicoPage implements OnInit {
       telefono: ['', Validators.required],
       direccion: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]})
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],},
+      { validator: this.passwordMatchValidator })
    }
+
+   passwordMatchValidator(control: AbstractControl) {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    if (password !== confirmPassword) {
+      control.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+    } else {
+      control.get('confirmPassword')?.setErrors(null);
+    }
+  }
+
     registrar() {
     this.spinner.show();
     if (this.registerForm.valid) {

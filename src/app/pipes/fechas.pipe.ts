@@ -6,12 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FechasPipe implements PipeTransform {
 
   transform(dateString: string): string {
-    const date = new Date(dateString);
-    const day = this.formatNumber(date.getDate());
-    const month = this.getMonthName(date.getMonth());
-    const year = date.getFullYear();
+    const [year, month, day] = dateString.split('-');
+    const date = new Date(Number(year), Number(month) - 1, Number(day));
+    const formattedDay = this.formatNumber(date.getDate());
+    const formattedMonth = this.getMonthName(date.getMonth());
+    const formattedYear = date.getFullYear();
 
-    return `${day} de ${month} ${year}`;
+    return `${formattedDay} de ${formattedMonth} ${formattedYear}`;
   }
 
   private getMonthName(month: number): string {

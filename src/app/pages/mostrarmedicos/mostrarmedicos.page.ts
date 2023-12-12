@@ -48,7 +48,9 @@ export class MostrarmedicosPage implements OnInit {
     this.selectedMedico = medico
     this.userService.getFechas(medico).then(()=>{
       this.setOpen(true)
+      console.log(this.userService.feachasAgendadas)
     })
+    console.log(this.selectedMedico)
   }
 
   cancel() {
@@ -87,7 +89,6 @@ export class MostrarmedicosPage implements OnInit {
   }
 
   agregarMedico(){
-    console.log("agregar MEDICO")
     this.router.navigate(['/registrarmedico']);
   }
 

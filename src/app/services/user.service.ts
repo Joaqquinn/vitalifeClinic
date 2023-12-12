@@ -39,16 +39,30 @@ export class UserService {
 
     async createUser(data:any, tipoUsuario:any){
       const usersRef = collection(this.Firestore,'users');
-      await setDoc(doc(usersRef, data.correo),{
-            nombre : data.nombre,
-            apellidoP: data.apellidoP,
-            edad: data.edad,
-            correo :data.correo,
-            telefono :data.telefono,
-            direccion: data.direccion,
-            password: data.password,
-            tipoUsuario : tipoUsuario
-    })
+      if(tipoUsuario == 'medico'){
+        await setDoc(doc(usersRef, data.correo),{
+              nombre : data.nombre,
+              apellidoP: data.apellidoP,
+              edad: data.edad,
+              correo :data.correo,
+              telefono :data.telefono,
+              direccion: data.direccion,
+              password: data.password,
+              tipoUsuario : tipoUsuario,
+              especialidad: data.espocialidad
+      })
+      }else{
+        await setDoc(doc(usersRef, data.correo),{
+          nombre : data.nombre,
+          apellidoP: data.apellidoP,
+          edad: data.edad,
+          correo :data.correo,
+          telefono :data.telefono,
+          direccion: data.direccion,
+          password: data.password,
+          tipoUsuario : tipoUsuario
+  })
+      }
     this.getPacientes();
     }
 
@@ -212,20 +226,35 @@ console.log('Datos del usuario guardados:', data);
     this.getMedicos();
   }
 
-  async agendarHora(medico:any, fecha:string){
-    const agendaRef = collection(this.Firestore,'agendadas');
-      await setDoc(doc(agendaRef),{
-            nombrePaciente : this.currentUser.nombre + " " + this.currentUser.apellidoP + " " + this.currentUser.apellidoM,
-            correoPaciente :this.currentUser.correo,
-            telefonoPaciente :this.currentUser.telefono,
-            nombreMedico: medico.nombre + " " + medico.apellidoP + " " + medico.apellidoM,
-            correoMedico: medico.correo,
-            telefonoMedico: medico.telefono,
-            fotoMedico: medico.selfie,
-            fechaAgendada: fecha
-    })
-    this.getFechasPaciente();
-  }
+    async agendarHora(medico:any, fecha:string){
+      const agendaRef = collection(this.Firestore,'agendadas');
+      if(medico.selfie){
+        await setDoc(doc(agendaRef),{
+          especialidad: medico.especialidad,
+          nombrePaciente : this.currentUser.nombre + " " + this.currentUser.apellidoP,
+          correoPaciente :this.currentUser.correo,
+          telefonoPaciente :this.currentUser.telefono,
+          nombreMedico: medico.nombre + " " + medico.apellidoP,
+          correoMedico: medico.correo,
+          telefonoMedico: medico.telefono,
+          fotoMedico: medico.selfie,
+          fechaAgendada: fecha.split('T')[0]
+  })
+      }else{
+        await setDoc(doc(agendaRef),{
+          especialidad: medico.especialidad,
+          nombrePaciente : this.currentUser.nombre + " " + this.currentUser.apellidoP,
+          correoPaciente :this.currentUser.correo,
+          telefonoPaciente :this.currentUser.telefono,
+          nombreMedico: medico.nombre + " " + medico.apellidoP,
+          correoMedico: medico.correo,
+          telefonoMedico: medico.telefono,
+          fechaAgendada: fecha.split('T')[0]
+  })
+      }
+        
+      this.getFechasPaciente();
+    }
 
   eliminarHora(hora:any){
     const collRef = collection(this.Firestore, 'agendadas');
