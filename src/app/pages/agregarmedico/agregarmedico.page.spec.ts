@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AgregarmedicoPage } from './agregarmedico.page';
+import { FormsModule } from '@angular/forms'; 
 
 describe('AgregarmedicoPage', () => {
   let component: AgregarmedicoPage;
@@ -7,8 +8,9 @@ describe('AgregarmedicoPage', () => {
 
   beforeEach(async() => {
     fixture = TestBed.createComponent(AgregarmedicoPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    imports: [ 
+      FormsModule     
+  ]
   });
 
   it('should create', () => {
