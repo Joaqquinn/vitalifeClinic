@@ -25,23 +25,16 @@
         </ion-item>
 
         <ion-item class="formGroup">
-          <ion-label for="nombre" position="floating">Nombre</ion-label>
+          <ion-label for="nombre" position="floating">Nombres</ion-label>
           <ion-input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Ingrese su nombre"></ion-input>
           <div *ngIf="registerForm.get('nombre')?.hasError('required') && registerForm.get('nombre')?.dirty">
           </div>
         </ion-item>
 
         <ion-item class="formGroup">
-          <ion-label for="apellidoP" position="floating">Apellido Paterno</ion-label>
+          <ion-label for="apellidoP" position="floating">Apellidos</ion-label>
           <ion-input type="text" class="form-control" id="nombre" formControlName="apellidoP" placeholder="Ingrese su apellido paterno"></ion-input>
           <div *ngIf="registerForm.get('apellidoP')?.hasError('required') && registerForm.get('apellidoP')?.dirty">
-          </div>
-        </ion-item>
-
-        <ion-item class="formGroup">
-          <ion-label for="apellidoM" position="floating">Apellido Materno</ion-label>
-          <ion-input type="text" class="form-control" id="apellidoM" formControlName="apellidoM" placeholder="Ingrese su apellido materno"></ion-input>
-          <div *ngIf="registerForm.get('apellidoM')?.hasError('required') && registerForm.get('apellidoM')?.dirty">
           </div>
         </ion-item>
 

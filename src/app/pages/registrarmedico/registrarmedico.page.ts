@@ -24,7 +24,6 @@ export class RegistrarmedicoPage implements OnInit {
       nombre: ['', Validators.required],
       espocialidad: ['', Validators.required],
       apellidoP: ['', Validators.required],
-      apellidoM: ['', Validators.required],
       edad:['', Validators.required],
       telefono: ['', Validators.required],
       direccion: ['', Validators.required],
